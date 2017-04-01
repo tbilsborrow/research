@@ -33,7 +33,7 @@ The following approaches are what I have experimented with so far:
 If you'd like to reproduce these experiments, what you'll need to do is:
 
 * [get Solr set up locally with indexed wikipedia documents](#wikipedia-in-solr)
-* [run a script to get baseline results from TextRazor](#textrazor-tag.py)
+* [run textrazor-tag.py to get baseline results from TextRazor](#pin-topic-tagging)
 * run a script corresponding to the desired approach to get comparable results
 * run additional scripts to see result details
 
