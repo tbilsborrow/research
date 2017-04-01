@@ -32,7 +32,7 @@ The following approaches are what I have experimented with so far:
 
 If you'd like to reproduce these experiments, what you'll need to do is:
 
-* [get Solr set up locally with indexed wikipedia documents](#Wikipedia-in-Solr)
+* [get Solr set up locally with indexed wikipedia documents](#wikipedia-in-solr)
 * [run a script to get baseline results from TextRazor](#textrazor-tag.py)
 * run a script corresponding to the desired approach to get comparable results
 * run additional scripts to see result details
@@ -65,7 +65,7 @@ Some additional reading indicates that short sentences may not be the best use c
 for doc2vec, or perhaps there are other training options to be able to use word
 vectors like I tried, or perhaps I'm just using the tool incorrectly. Further
 exploration is surely in order, but this is as far as I've gotten. More details
-on how to set up a machine for training and testing can be found [below](#doc2vec-on-Wikipedia).
+on how to set up a machine for training and testing can be found [below](#doc2vec-on-wikipedia).
 
 ##### "[More Like This](https://cwiki.apache.org/confluence/display/solr/MoreLikeThis)" in Solr
 
@@ -81,7 +81,7 @@ A More Like This query can also take an entire document as the "source" document
 using pin descriptions as the source.
 
 This task requires that wikipedia documents be indexed in Solr, so before you can
-run the `solr-tag.py` script, you'll need a [local Solr instance set up](#Wikipedia-in-Solr).
+run the `solr-tag.py` script, you'll need a [local Solr instance set up](#wikipedia-in-solr).
 
 ##### Unigrams/bigrams
 
@@ -526,7 +526,7 @@ The evaluation scripts are:
 * `noun-tag.py`
  * these three all require a local solr instance with a core called `wikipedia_core` using the `schema.xml` from this repo
  * they require solr to have the `solr.MoreLikeThisHandler` requestHandler defined in conf
- * they require a wikipedia article dump to have been [loaded into the index](#Wikipedia-in-Solr)
+ * they require a wikipedia article dump to have been [loaded into the index](#wikipedia-in-solr)
 
 #### scorer.py
 
