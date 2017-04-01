@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema name="a5y-wikipedia" version="1.6">
+
+  <field name="id" type="string" indexed="true" stored="true"
+         required="true" multiValued="false" docValues="true"/>
+  <uniqueKey>id</uniqueKey>
+
+  <field name="page_name" type="string" indexed="true"
+         stored="true" required="true" multiValued="false" docValues="true"/>
+
+  <field name="page_name_lower" type="lowercase" indexed="true"
+         stored="true" required="true" multiValued="false"/>
+  <copyField source="page_name" dest="page_name_lower"/>
+
+  <field name="page_text" type="text_en_html" indexed="true" stored="true"
+         multiValued="true" termVectors="true" termPositions="true" termOffsets="true"/>
+
+  <field name="is_disambiguation" type="boolean" indexed="true"
+         stored="true" multiValued="false"/>
+
+  <field name="_version_" type="long" indexed="true" stored="true"/>
+
+  <!-- ================================================================ -->
+
+  <fieldType name="string" class="solr.StrField" sortMissingLast="true" />
+
+  <fieldType name="boolean" class="solr.BoolField" sortMissingLast="true"/>
+
+  <fieldType name="int" class="solr.TrieIntField"
+             precisionStep="0" positionIncrementGap="0"/>
+  <fieldType name="float" class="solr.TrieFloatField"
+             precisionStep="0" positionIncrementGap="0"/>
+  <fieldType name="long" class="solr.TrieLongField"
+             precisionStep="0" positionIncrementGap="0"/>
+  <fieldType name="double" class="solr.TrieDoubleField"
+             precisionStep="0" positionIncrementGap="0"/>
+
+  <fieldType name="text_en_html" class="solr.TextField"
+             positionIncrementGap="100">
+    <analyzer type="index">
+      <charFilter class="solr.HTMLStripCharFilterFactory"/>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.StopFilterFactory"
+              ignoreCase="true"
+              words="lang/stopwords_en.txt"
+      />
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.EnglishPossessiveFilterFactory"/>
+      <filter class="solr.KeywordMarkerFilterFactory"
+              protected="protwords.txt"/>
+      <filter class="solr.PorterStemFilterFactory"/>
+    </analyzer>
+    <analyzer type="query">
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.SynonymFilterFactory"
+              synonyms="synonyms.txt" ignoreCase="true" expand="true"/>
+      <filter class="solr.StopFilterFactory"
+              ignoreCase="true"
+              words="lang/stopwords_en.txt"
+      />
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.EnglishPossessiveFilterFactory"/>
+      <filter class="solr.KeywordMarkerFilterFactory"
+              protected="protwords.txt"/>
+      <filter class="solr.PorterStemFilterFactory"/>
+    </analyzer>
+  </fieldType>
+
+  <fieldType name="lowercase" class="solr.TextField"
+             positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.KeywordTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory" />
+    </analyzer>
+  </fieldType>
+</schema>
