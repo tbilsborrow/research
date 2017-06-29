@@ -505,34 +505,34 @@ pins, TextRazor determined that 53 of them are related to the Chocolate wikipedi
 ## To Do This Yourself
 
 1. get local environment setup, you'll need:
- * avro tools: https://ahalogy.atlassian.net/wiki/display/dev/Misc
- * jq: https://stedolan.github.io/jq/download/
- * python, with an environment as specified below in the [Scripts](#scripts) section
- * [local Solr with indexed wikipedia documents](#wikipedia-in-solr)
+   * avro tools: https://ahalogy.atlassian.net/wiki/display/dev/Misc
+   * jq: https://stedolan.github.io/jq/download/
+   * python, with an environment as specified below in the [Scripts](#scripts) section
+   * [local Solr with indexed wikipedia documents](#wikipedia-in-solr)
 
 2. get some text, in this case we're dealing with pin descriptions
- * `aws s3 ls s3://ada.a5y.com/emr/aggregation/pig/jobs/states/ | tail -3`
- * take the second to last one, call it NNNNN (see https://ahalogy.atlassian.net/wiki/spaces/inf/pages/71335947/Solr-Cloud+Operations+Run+Book#Solr-CloudOperationsRunBook-Loadingwhennobackupisavailable)
- * `aws s3 ls s3://ada.a5y.com/emr/aggregation/pig/jobs/states/NNNNN/Pins/`
- * pick a file and get it locally, any one will do
- * `aws s3 cp s3://ada.a5y.com/emr/aggregation/pig/jobs/states/NNNNN/Pins/part-r-XXXXX.avro .`
- * extract some descriptions, I'll do 500 since that's how many we can analyze per day for free with TextRazor
- * `avro tojson part-r-XXXXX.avro | head -500 | jq -r '.description.string' > descriptions.txt`
- * descriptions.txt will have one entry per line
+   * `aws s3 ls s3://ada.a5y.com/emr/aggregation/pig/jobs/states/ | tail -3`
+   * take the second to last one, call it NNNNN (see https://ahalogy.atlassian.net/wiki/spaces/inf/pages/71335947/Solr-Cloud+Operations+Run+Book#Solr-CloudOperationsRunBook-Loadingwhennobackupisavailable)
+   * `aws s3 ls s3://ada.a5y.com/emr/aggregation/pig/jobs/states/NNNNN/Pins/`
+   * pick a file and get it locally, any one will do
+   * `aws s3 cp s3://ada.a5y.com/emr/aggregation/pig/jobs/states/NNNNN/Pins/part-r-XXXXX.avro .`
+   * extract some descriptions, I'll do 500 since that's how many we can analyze per day for free with TextRazor
+   * `avro tojson part-r-XXXXX.avro | head -500 | jq -r '.description.string' > descriptions.txt`
+   * descriptions.txt will have one entry per line
 
 3. get baseline results from TextRazor
- * `cat descriptions.txt | python textrazor-tag.py > tr-results.txt`
- * tr-results.txt will have a list of detected wikipedia topics, one line per description
+   * `cat descriptions.txt | python textrazor-tag.py > tr-results.txt`
+   * tr-results.txt will have a list of detected wikipedia topics, one line per description
 
 4. get evaluation results from our own ideas, in this case I'll show the ngram results
- * write some code to try an experiment (like gram-tag.py)
- * have that code output a list of detected wikipedia topics, one line per description
- * `cat descriptions.txt | python gram-tag.py > g-results.txt`
+   * write some code to try an experiment (like gram-tag.py)
+   * have that code output a list of detected wikipedia topics, one line per description
+   * `cat descriptions.txt | python gram-tag.py > g-results.txt`
 
 5. compare experiment against baseline
- * `python scorer.py tr-results.txt g-results.txt`
- * `cat g-results.txt | python histogram.py`
- * `python compare.py tr-results.txt g-results.txt`
+   * `python scorer.py tr-results.txt g-results.txt`
+   * `cat g-results.txt | python histogram.py`
+   * `python compare.py tr-results.txt g-results.txt`
 
 ## Scripts
 
