@@ -36,6 +36,7 @@ If you'd like to reproduce these experiments, what you'll need to do is:
 * [run textrazor-tag.py to get baseline results from TextRazor](#pin-topic-tagging)
 * run a script corresponding to the desired approach to get comparable results
 * run additional scripts to see result details
+* [more details here](#to-do-this-yourself)
 
 
 ##### [TextRazor](http://textrazor.com)
@@ -500,13 +501,45 @@ pins, TextRazor determined that 53 of them are related to the Chocolate wikipedi
 * `pin-descriptions.txt`: pin descriptions extracted from the json, one per line
 * `*-results.txt`: these are the outputs of the various pin/topic tagging scripts
    below. I checked in my results, but feel free to generate your own...
+   
+## To Do This Yourself
+
+1. get local environment setup, you'll need:
+ * avro tools: https://ahalogy.atlassian.net/wiki/display/dev/Misc
+ * jq: https://stedolan.github.io/jq/download/
+ * python, with an environment as specified below in the [Scripts](#scripts) section
+ * [local Solr with indexed wikipedia documents](#wikipedia-in-solr)
+
+2. get some text, in this case we're dealing with pin descriptions
+ * `aws s3 ls s3://ada.a5y.com/emr/aggregation/pig/jobs/states/ | tail -3`
+ * take the second to last one, call it NNNNN (see https://ahalogy.atlassian.net/wiki/spaces/inf/pages/71335947/Solr-Cloud+Operations+Run+Book#Solr-CloudOperationsRunBook-Loadingwhennobackupisavailable)
+ * `aws s3 ls s3://ada.a5y.com/emr/aggregation/pig/jobs/states/NNNNN/Pins/`
+ * pick a file and get it locally, any one will do
+ * `aws s3 cp s3://ada.a5y.com/emr/aggregation/pig/jobs/states/NNNNN/Pins/part-r-XXXXX.avro .`
+ * extract some descriptions, I'll do 500 since that's how many we can analyze per day for free with TextRazor
+ * `avro tojson part-r-XXXXX.avro | head -500 | jq -r '.description.string' > descriptions.txt`
+ * descriptions.txt will have one entry per line
+
+3. get baseline results from TextRazor
+ * `cat descriptions.txt | python textrazor-tag.py > tr-results.txt`
+ * tr-results.txt will have a list of detected wikipedia topics, one line per description
+
+4. get evaluation results from our own ideas, in this case I'll show the ngram results
+ * write some code to try an experiment (like gram-tag.py)
+ * have that code output a list of detected wikipedia topics, one line per description
+ * `cat descriptions.txt | python gram-tag.py > g-results.txt`
+
+5. compare experiment against baseline
+ * `python scorer.py tr-results.txt g-results.txt`
+ * `cat g-results.txt | python histogram.py`
+ * `python compare.py tr-results.txt g-results.txt`
 
 ## Scripts
 
 These scripts are all python. If you want to run them, I'd recommend setting up a
 virtualenv, and then:
 
-* ` pip install -r requirements.txt`
+* `pip install -r requirements.txt`
 * `python -m spacy download en`
 
 ##### pin-topic tagging
@@ -577,8 +610,14 @@ Further areas of exploration would include:
 * Get a labeled set of pin/topic data and use that as the baseline instead
   of TextRazor - would require us humans to go through a bunch of pins and decide
   what topics we think the ideal results would be.
+* Find another ML/NLP service besides TextRazor
+  * https://alchemy-language-demo.mybluemix.net/
+  * https://cloud.google.com/natural-language/
+  * https://aws.amazon.com/amazon-ai/
 * Be more like TextRazor - get into way more machine learning and natural language processing
   for more effective keyword extraction
+  * python: nltk, spacy, textblob, textacy, scikit-learn, tensorflow
+  * java: Deeplearning4j, Stanford NLP, Apache OpenNLP
 * Purchase TextRazor - either monthly as a service, or get it on premise
 * Make use of each pin's click-through content to get much more context
 * Make use of each pin's image, extracting captions to add more context
@@ -629,7 +668,3 @@ websites of interest:
 * http://www.kdnuggets.com/2017/03/seven-more-steps-machine-learning-python.html
 * http://www.kdnuggets.com/2016/01/seven-steps-deep-learning.html
 * http://www.nltk.org/book/ch07.html
-
-python libraries of interest: nltk, spacy, textblob, textacy, scikit-learn, tensorflow
-
-related java libraries: Deeplearning4j, Stanford NLP, Apache OpenNLP
