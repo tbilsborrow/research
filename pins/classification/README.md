@@ -626,23 +626,32 @@ Further areas of exploration would include:
 
 #### Wikipedia in Solr
 
-There is almost certainly a better way to do this. Probably one would go from the
-xml wikipedia dump straight into Solr, but large scale XML handling is a pain and
-I didn't spend too much time trying to make it work. Turns out in my case I'd already
-loaded the wikipedia dump into a local MySQL, so it was easier for me to just
-go from there:
+The `wikixml-to-solr.py` script will load articles from a wikipedia xml dump file
+into a solr instance.
 
 * install Solr locally
+  * or create a solr mut:
+    * follow instructions at https://ahalogy.atlassian.net/wiki/spaces/dev/pages/58785842/Development+MUTs#Development/MUTs-CustomInstancewithChefZero
+    * except add `-v 128` as a `create_spot` parameter (you'll need more than the default 8GB storage)
+    * and for the last chef command, instead of running the mut recipe, run these instead:
+    * `sudo chef-client -z --runlist 'recipe[a5y-java-8],recipe[a5y-solr-cloud::install_solr]'`
+    * ssh to the mut and `/opt/solr/bin/solr start`
 * create a core, call it `wikipedia_core`
 * use the `schema.xml` from this repo
-* add `<requestHandler name="/mlt" class="solr.MoreLikeThisHandler"></requestHandler>`
-  to `solrconfig.xml`
+* add `<requestHandler name="/mlt" class="solr.MoreLikeThisHandler"></requestHandler>` to `solrconfig.xml`
+* on the machine with solr, wget a `enwiki-<date>-pages-articles.xml.bz2` file from https://dumps.wikimedia.org/enwiki/
+  * this can take a couple of hours on a mut
+* run `python wikixml-to-solr.py enwiki-<date>-pages-articles.xml.bz2` with the file downloaded
+  * you'll probably want to run this in a `screen` since it will take many hours
+
+#### Wikipedia in MySQL
+
 * install MySQL locally
 * create a database called `wikipedia` with username/password `ahalogy`
 * follow instructions at https://dkpro.github.io/dkpro-jwpl/DataMachine/
   (this involves downloading wikipedia xml dump files, converting them to txt,
   and loading that txt into mysql)
-* run the java app in the `WikipediaDbToSolr` class in this repo
+* if you want to go from MySQL->Solr, run the java app in the `WikipediaDbToSolr` class in this repo
 
 #### doc2vec on Wikipedia
 
