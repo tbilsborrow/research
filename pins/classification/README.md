@@ -614,6 +614,10 @@ Further areas of exploration would include:
   * https://alchemy-language-demo.mybluemix.net/
   * https://cloud.google.com/natural-language/
   * https://aws.amazon.com/amazon-ai/
+    * [tb] Entity extraction is not one of the services (AI services are around image and speech/voice). 
+    They do have a ML platform, which is a layer on top of ML toolkits (like tensorflow), but this
+    feels more like an option to explore if we decide to get into ML in general, with our own
+    feature extraction and training/test data (assuming a supervised approach).
 * Be more like TextRazor - get into way more machine learning and natural language processing
   for more effective keyword extraction
   * python: nltk, spacy, textblob, textacy, scikit-learn, tensorflow
