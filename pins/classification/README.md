@@ -610,14 +610,25 @@ Further areas of exploration would include:
 * Get a labeled set of pin/topic data and use that as the baseline instead
   of TextRazor - would require us humans to go through a bunch of pins and decide
   what topics we think the ideal results would be.
+* Try RAKE and Maui libraries (see https://www.airpair.com/nlp/keyword-extraction-tutorial)
+* Try Ranking SVM approach (see http://bdewilde.github.io/blog/2014/09/23/intro-to-automatic-keyphrase-extraction/)
+* Try to construct our own machine learning/NLP algorithm/model
+  * for supervised, get a labeled set of descriptions
+  * define feature extraction
+  * define, train, and test model
+  * python: nltk, spacy, textblob, textacy, scikit-learn, tensorflow
+  * java: Deeplearning4j, Stanford NLP, Apache OpenNLP
 * Find another ML/NLP service besides TextRazor
   * https://alchemy-language-demo.mybluemix.net/
   * https://cloud.google.com/natural-language/
+    * [tb] Similar to TextRazor. Appears to detect more entities, pretty much one for every noun
+    (unless the noun is parsed as an adjective, e.g. it doesn't get "nutella" from "nutella hot chocolate").
+    Pricing would be $2,000 per month for 8 million queries. Doesn't seem to have any customization options.
   * https://aws.amazon.com/amazon-ai/
-* Be more like TextRazor - get into way more machine learning and natural language processing
-  for more effective keyword extraction
-  * python: nltk, spacy, textblob, textacy, scikit-learn, tensorflow
-  * java: Deeplearning4j, Stanford NLP, Apache OpenNLP
+    * [tb] Entity extraction is not one of the services (AI services are around image and speech/voice). 
+    They do have a ML platform, which is a layer on top of ML toolkits (like tensorflow), but this
+    feels more like an option to explore if we decide to get into ML in general, with our own
+    feature extraction and training/test data (assuming a supervised approach).
 * Purchase TextRazor - either monthly as a service, or get it on premise
 * Make use of each pin's click-through content to get much more context
 * Make use of each pin's image, extracting captions to add more context
@@ -626,23 +637,32 @@ Further areas of exploration would include:
 
 #### Wikipedia in Solr
 
-There is almost certainly a better way to do this. Probably one would go from the
-xml wikipedia dump straight into Solr, but large scale XML handling is a pain and
-I didn't spend too much time trying to make it work. Turns out in my case I'd already
-loaded the wikipedia dump into a local MySQL, so it was easier for me to just
-go from there:
+The `wikixml-to-solr.py` script will load articles from a wikipedia xml dump file
+into a solr instance.
 
 * install Solr locally
+  * or create a solr mut:
+    * follow instructions at https://ahalogy.atlassian.net/wiki/spaces/dev/pages/58785842/Development+MUTs#Development/MUTs-CustomInstancewithChefZero
+    * except add `-v 128` as a `create_spot` parameter (you'll need more than the default 8GB storage)
+    * and for the last chef command, instead of running the mut recipe, run these instead:
+    * `sudo chef-client -z --runlist 'recipe[a5y-java-8],recipe[a5y-solr-cloud::install_solr]'`
+    * ssh to the mut and `/opt/solr/bin/solr start`
 * create a core, call it `wikipedia_core`
 * use the `schema.xml` from this repo
-* add `<requestHandler name="/mlt" class="solr.MoreLikeThisHandler"></requestHandler>`
-  to `solrconfig.xml`
+* add `<requestHandler name="/mlt" class="solr.MoreLikeThisHandler"></requestHandler>` to `solrconfig.xml`
+* on the machine with solr, wget a `enwiki-<date>-pages-articles.xml.bz2` file from https://dumps.wikimedia.org/enwiki/
+  * this can take a couple of hours on a mut
+* run `python wikixml-to-solr.py enwiki-<date>-pages-articles.xml.bz2` with the file downloaded
+  * you'll probably want to run this in a `screen` since it will take many hours
+
+#### Wikipedia in MySQL
+
 * install MySQL locally
 * create a database called `wikipedia` with username/password `ahalogy`
 * follow instructions at https://dkpro.github.io/dkpro-jwpl/DataMachine/
   (this involves downloading wikipedia xml dump files, converting them to txt,
   and loading that txt into mysql)
-* run the java app in the `WikipediaDbToSolr` class in this repo
+* if you want to go from MySQL->Solr, run the java app in the `WikipediaDbToSolr` class in this repo
 
 #### doc2vec on Wikipedia
 
