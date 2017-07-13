@@ -610,18 +610,25 @@ Further areas of exploration would include:
 * Get a labeled set of pin/topic data and use that as the baseline instead
   of TextRazor - would require us humans to go through a bunch of pins and decide
   what topics we think the ideal results would be.
+* Try RAKE and Maui libraries (see https://www.airpair.com/nlp/keyword-extraction-tutorial)
+* Try Ranking SVM approach (see http://bdewilde.github.io/blog/2014/09/23/intro-to-automatic-keyphrase-extraction/)
+* Try to construct our own machine learning/NLP algorithm/model
+  * for supervised, get a labeled set of descriptions
+  * define feature extraction
+  * define, train, and test model
+  * python: nltk, spacy, textblob, textacy, scikit-learn, tensorflow
+  * java: Deeplearning4j, Stanford NLP, Apache OpenNLP
 * Find another ML/NLP service besides TextRazor
   * https://alchemy-language-demo.mybluemix.net/
   * https://cloud.google.com/natural-language/
+    * [tb] Similar to TextRazor. Appears to detect more entities, pretty much one for every noun
+    (unless the noun is parsed as an adjective, e.g. it doesn't get "nutella" from "nutella hot chocolate").
+    Pricing would be $2,000 per month for 8 million queries. Doesn't seem to have any customization options.
   * https://aws.amazon.com/amazon-ai/
     * [tb] Entity extraction is not one of the services (AI services are around image and speech/voice). 
     They do have a ML platform, which is a layer on top of ML toolkits (like tensorflow), but this
     feels more like an option to explore if we decide to get into ML in general, with our own
     feature extraction and training/test data (assuming a supervised approach).
-* Be more like TextRazor - get into way more machine learning and natural language processing
-  for more effective keyword extraction
-  * python: nltk, spacy, textblob, textacy, scikit-learn, tensorflow
-  * java: Deeplearning4j, Stanford NLP, Apache OpenNLP
 * Purchase TextRazor - either monthly as a service, or get it on premise
 * Make use of each pin's click-through content to get much more context
 * Make use of each pin's image, extracting captions to add more context
