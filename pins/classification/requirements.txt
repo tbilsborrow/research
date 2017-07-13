@@ -1,8 +1,16 @@
 appdirs==1.4.3
+asn1crypto==0.22.0
+certifi==2017.4.17
+cffi==1.10.0
+chardet==3.0.4
+cryptography==1.9
 cymem==1.31.2
 cytoolz==0.8.2
 dill==0.2.6
 en-core-web-sm==1.2.0
+enum34==1.1.6
+idna==2.5
+ipaddress==1.0.18
 murmurhash==0.26.4
 nltk==3.2.2
 numpy==1.12.1
@@ -11,8 +19,11 @@ pathlib==1.0.1
 Pattern==2.6
 plac==0.9.6
 preshed==1.0.0
+pycparser==2.18
+pyOpenSSL==17.1.0
 pyparsing==2.2.0
-requests==2.13.0
+pysolr==3.6.0
+requests==2.18.1
 six==1.10.0
 solrpy==0.9.7
 spacy==1.7.3
@@ -22,4 +33,6 @@ thinc==6.5.2
 toolz==0.8.2
 tqdm==4.11.2
 ujson==1.35
+urllib3==1.21.1
+watson-developer-cloud==0.26.1
 wrapt==1.10.10

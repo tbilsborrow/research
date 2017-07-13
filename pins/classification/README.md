@@ -107,6 +107,7 @@ of looking at all unigrams/bigrams, I tried looking only at noun phrases
     <th>Solr</th>
     <th>*gram</th>
     <th>Noun Phrase</th>
+    <th>IBM-NLU</th>
   </tr>
   <tr>
     <td></td>
@@ -127,6 +128,12 @@ of looking at all unigrams/bigrams, I tried looking only at noun phrases
       textrazor only: 3001<br/>
       noun phrase only: 1185<br/>
       score: 0.257275
+    </td>
+    <td nowrap>
+      matching: 471<br/>
+      textrazor only: 3255<br/>
+      ibm-nlu only: 1042<br/>
+      score: 0.179805
     </td>
   </tr>
   <tr>
@@ -221,6 +228,29 @@ of looking at all unigrams/bigrams, I tried looking only at noun phrases
 6: Money<br/>
 6: Gluten<br/>
 520 unique topics
+    </td>
+    <td nowrap>   
+8: Apple<br/>
+2: YouTube<br/>
+2: Starbucks<br/>
+2: Anxiety<br/>
+2: England<br/>
+2: India<br/>
+2: London<br/>
+2: Milk<br/>
+2: The Cheesecake Factory<br/>
+2: William Shatner<br/>
+2: Valentine<br/>
+2: Europe<br/>
+2: NBC<br/>
+2: Paula Deen<br/>
+1: Coit Tower<br/>
+1: Ham<br/>
+1: Landon<br/>
+1: Paris<br/>
+1: Bologna<br/>
+1: 20 minutes<br/>
+114 unique topics
     </td>
   </tr>
 </table>
@@ -491,6 +521,87 @@ pins, TextRazor determined that 53 of them are related to the Chocolate wikipedi
    4: Summer<br/>
    4: Anyone<br/>
 246 topics
+    </td>
+  </tr>
+</table>
+
+##### IBM-NLU
+
+<table>
+  <tr>
+    <th>Matching</th>
+    <th>only in TextRazor</th>
+    <th>only in IBM-NLU</th>
+  </tr>
+  <tr>
+    <td nowrap>
+    8: Apple<br/>
+   2: Europe<br/>
+   2: YouTube<br/>
+   2: NBC<br/>
+   2: Starbucks<br/>
+   2: Anxiety<br/>
+   2: England<br/>
+   2: India<br/>
+   2: London<br/>
+   2: Milk<br/>
+   1: Ham<br/>
+   1: Paris<br/>
+   1: Bologna<br/>
+   1: Pisa<br/>
+   1: Basil<br/>
+   1: Nordstrom<br/>
+   1: Michelangelo<br/>
+   1: Herb<br/>
+   1: Oregon<br/>
+   1: Zazzle<br/>
+31 topics
+    </td>
+    <td nowrap>
+  53: Chocolate<br/>
+  49: Cookie<br/>
+  47: Cheese<br/>
+  43: Do_it_yourself<br/>
+  43: Gluten-free_diet<br/>
+  39: Butter<br/>
+  32: Salad<br/>
+  30: Gluten<br/>
+  29: Breakfast<br/>
+  27: Slow_cooker<br/>
+  27: Cake<br/>
+  25: Dessert<br/>
+  25: Peanut<br/>
+  23: Sugar<br/>
+  23: Soup<br/>
+  23: Veganism<br/>
+  23: Bread<br/>
+  22: Peanut_butter<br/>
+  22: Pie<br/>
+  21: Chicken<br/>
+1204 topics
+    </td>
+    <td nowrap>
+   2: Paula Deen<br/>
+   2: The Cheesecake Factory<br/>
+   2: William Shatner<br/>
+   2: Valentine<br/>
+   1: Sis<br/>
+   1: Camila<br/>
+   1: Coit Tower<br/>
+   1: Mike Colter<br/>
+   1: Landon<br/>
+   1: Piet Mondrian<br/>
+   1: Pepa<br/>
+   1: Jack Skellington<br/>
+   1: 20 minutes<br/>
+   1: Rev<br/>
+   1: One Hour<br/>
+   1: Ken Frank<br/>
+   1: Greens<br/>
+   1: Lois Lane<br/>
+   1: Pollock<br/>
+   1: Jillian Michaels<br/>
+83 topics
     </td>
   </tr>
 </table>

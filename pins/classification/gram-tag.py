@@ -5,7 +5,7 @@ import nltk
 import re
 from pattern.en import singularize
 
-con = solr.SolrConnection('http://localhost:8983/solr/wikipedia_core')
+con = solr.SolrConnection('http://10.1.11.210:8983/solr/wikipedia_core')
 
 stopwords = nltk.corpus.stopwords.words('english')
 
