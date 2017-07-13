@@ -37,6 +37,7 @@ def process(line):
             ]
         )
         tags = set()
+        print(json.dumps(response, indent=2))
         for entity in response['entities']:
             for name in entity['text']:
                 tags.update(query(name))
