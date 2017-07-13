@@ -17,7 +17,7 @@ cache = set()
 def query(w):
     if w in cache:
         return [w]
-    results = [d['page_name'] for d in con.query('page_name:%s AND is_disambiguation:false' % w, fl='page_name')]
+    results = [d['page_name'] for d in con.query('page_name:"%s" AND is_disambiguation:false' % w, fl='page_name')]
     cache.update(results)
     return results
 
@@ -28,17 +28,18 @@ def process(line):
     # remove the rest of the non-ascii chars
     line = re.sub(r'[^\x00-\x7F]+', ' ', line)
 
-    if len(line) > 0:
+    if len(line) > 15:
         response = client.analyze(
             text=line,
             features=[
                 Features.Entities()
-            ]
+            ],
+            language='en'
         )
         tags = set()
         for entity in response['entities']:
-            for name in entity['text']:
-                tags.update(query(name))
+            name = entity['text'].encode('ascii', 'ignore')
+            tags.update(query(name))
 
         return ",".join(tags).encode('utf-8')
     else:

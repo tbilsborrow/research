@@ -18,7 +18,7 @@ cache = set()
 def query(w):
     if w in cache:
         return [w]
-    results = [d['page_name'] for d in con.query('page_name:%s AND is_disambiguation:false' % w, fl='page_name')]
+    results = [d['page_name'] for d in con.query('page_name:"%s" AND is_disambiguation:false' % w, fl='page_name')]
     cache.update(results)
     return results
 
@@ -39,8 +39,8 @@ def process(line):
         tags = set()
         print(json.dumps(response, indent=2))
         for entity in response['entities']:
-            for name in entity['text']:
-                tags.update(query(name))
+            name = entity['text'].encode('ascii', 'ignore')
+            tags.update(query(name))
 
         return ",".join(tags).encode('utf-8')
     else:
