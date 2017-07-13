@@ -2,7 +2,7 @@ appdirs==1.4.3
 cymem==1.31.2
 cytoolz==0.8.2
 dill==0.2.6
-en-core-web-sm==1.2.0
+#en-core-web-sm==1.2.0
 murmurhash==0.26.4
 nltk==3.2.2
 numpy==1.12.1
