@@ -108,6 +108,7 @@ of looking at all unigrams/bigrams, I tried looking only at noun phrases
     <th>*gram</th>
     <th>Noun Phrase</th>
     <th>IBM-NLU</th>
+    <th>RAKE</th>
   </tr>
   <tr>
     <td></td>
@@ -119,7 +120,7 @@ of looking at all unigrams/bigrams, I tried looking only at noun phrases
     </td>
     <td nowrap>
       matching: 2402<br/>
-      textrazor-results.txt only: 1324<br/>
+      textrazor only: 1324<br/>
       gram only: 4217<br/>
       score: 0.464379
     </td>
@@ -134,6 +135,12 @@ of looking at all unigrams/bigrams, I tried looking only at noun phrases
       textrazor only: 3255<br/>
       ibm-nlu only: 1042<br/>
       score: 0.179805
+    </td>
+    <td nowrap>
+      matching: 718<br/>
+      textrazor only: 3008<br/>
+      rake only: 1490<br/>
+      score: 0.241995
     </td>
   </tr>
   <tr>
@@ -229,7 +236,7 @@ of looking at all unigrams/bigrams, I tried looking only at noun phrases
 6: Gluten<br/>
 520 unique topics
     </td>
-    <td nowrap>   
+    <td nowrap>
 8: Apple<br/>
 2: YouTube<br/>
 2: Starbucks<br/>
@@ -251,6 +258,29 @@ of looking at all unigrams/bigrams, I tried looking only at noun phrases
 1: Bologna<br/>
 1: 20 minutes<br/>
 114 unique topics
+    </td>
+    <td nowrap>
+42: Love<br/>
+26: Recipe<br/>
+26: Time<br/>
+17: Home<br/>
+17: Gluten<br/>
+15: Family<br/>
+15: Find<br/>
+14: Breakfast<br/>
+14: Dinner<br/>
+13: Cheese<br/>
+13: GReAT<br/>
+10: SiMPLE<br/>
+10: Kitchen<br/>
+10: Year<br/>
+10: Chicken<br/>
+9: Summer<br/>
+9: Bacon<br/>
+9: Taste<br/>
+9: Making<br/>
+8: Creamy<br/>
+767 unique topics
     </td>
   </tr>
 </table>
