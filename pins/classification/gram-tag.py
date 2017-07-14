@@ -20,7 +20,7 @@ def remove_nonalpha(w):
 def query(w):
     if w in cache:
         return [w]
-    results = [d['page_name'] for d in con.query('page_name:%s AND is_disambiguation:false' % w, fl='page_name')]
+    results = [d['page_name'] for d in con.query('page_name_lower:%s AND is_disambiguation:false' % w, fl='page_name')]
     cache.update(results)
     return results
 
@@ -38,7 +38,7 @@ def process(line):
     for sentence in sentences:
         # words
         all_words = [singularize(w).capitalize() for w in nltk.tokenize.word_tokenize(sentence)]
-        words = {remove_nonalpha(w) for w in all_words if accept_word(w)}
+        words = {remove_nonalpha(w).lower() for w in all_words if accept_word(w)}
         # search solr
         for word in words:
             # print(word)
@@ -48,8 +48,9 @@ def process(line):
         all_bigrams = nltk.bigrams(all_words)
         bigrams = {b for b in all_bigrams if accept_word(b[0]) and accept_word(b[1])}
         for bigram in bigrams:
-            b = '%s_%s' % (remove_nonalpha(bigram[0]), remove_nonalpha(bigram[1]).lower())
-            # print(b)
+            b = '%s_%s' % (remove_nonalpha(bigram[0]), remove_nonalpha(bigram[1]))
+            b = b.lower()
+            # print('>>>>>>>>> %s' % b)
             tags.update(query(b))
 
     return ",".join(tags).encode('utf-8')

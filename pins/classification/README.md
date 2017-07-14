@@ -118,10 +118,10 @@ of looking at all unigrams/bigrams, I tried looking only at noun phrases
       score: 0.127050
     </td>
     <td nowrap>
-      matching: 2354<br/>
-      textrazor only: 1372<br/>
-      gram only: 3476<br/>
-      score: 0.492675
+      matching: 2402<br/>
+      textrazor-results.txt only: 1324<br/>
+      gram only: 4217<br/>
+      score: 0.464379
     </td>
     <td nowrap>
       matching: 725<br/>
@@ -186,25 +186,25 @@ of looking at all unigrams/bigrams, I tried looking only at noun phrases
     <td nowrap>
 187: Recipe<br/>
 84: Chicken<br/>
+82: KID<br/>
 72: Love<br/>
 61: Chocolate<br/>
 58: Idea<br/>
+52: GReAT<br/>
 51: Craft<br/>
 49: Like<br/>
 48: Day<br/>
 48: Cheese<br/>
+47: SiMPLE<br/>
 46: Fun<br/>
 43: Time<br/>
 43: Cake<br/>
 42: Butter<br/>
+39: HomeMADE<br/>
 33: Family<br/>
 33: Ingredient<br/>
 32: Salad<br/>
-32: Dinner<br/>
-31: Breakfast<br/>
-31: Food<br/>
-30: Home<br/>
-1589 unique topics
+1870 unique topics
     </td>
     <td nowrap>
 30: Recipe<br/>
@@ -393,7 +393,7 @@ pins, TextRazor determined that 53 of them are related to the Chocolate wikipedi
   23: Christmas<br/>
   23: Pie<br/>
   22: Peanut_butter<br/>
-745 topics
+795 topics
     </td>
     <td nowrap>
   43: Do_it_yourself<br/>
@@ -416,30 +416,30 @@ pins, TextRazor determined that 53 of them are related to the Chocolate wikipedi
    6: Egg_as_food<br/>
    6: Hors_d'oeuvre<br/>
    5: Coriander<br/>
-490 topics
+440 topics
     </td>
     <td nowrap>
+  82: KID<br/>
   72: Love<br/>
   58: Idea<br/>
+  52: GReAT<br/>
   51: Craft<br/>
   49: Like<br/>
   48: Day<br/>
+  47: SiMPLE<br/>
   46: Fun<br/>
   43: Time<br/>
+  39: HomeMADE<br/>
   33: Family<br/>
   31: Food<br/>
   30: Home<br/>
+  30: CREAM<br/>
+  28: EveR<br/>
   27: Minute<br/>
   26: Creamy<br/>
   24: Take<br/>
   24: Need<br/>
-  24: Find<br/>
-  22: Try<br/>
-  21: Flavor<br/>
-  21: Little<br/>
-  20: Taste<br/>
-  18: Bar<br/>
-844 topics
+1075 topics
     </td>
   </tr>
 </table>
@@ -728,7 +728,7 @@ Further areas of exploration would include:
   * define feature extraction
   * define, train, and test model
   * python: nltk, spacy, textblob, textacy, scikit-learn, tensorflow
-  * java: Deeplearning4j, Stanford NLP, Apache OpenNLP
+  * java: Deeplearning4j, Stanford NLP, Apache OpenNLP, Mallet
 * Find another ML/NLP service besides TextRazor
   * https://alchemy-language-demo.mybluemix.net/
   * https://cloud.google.com/natural-language/
@@ -793,8 +793,9 @@ into a solr instance.
 #### Further reading
 
 websites of interest:
-* http://bdewilde.github.io/blog/2014/09/23/intro-to-automatic-keyphrase-extraction/
 * https://www.airpair.com/nlp/keyword-extraction-tutorial
+* http://bdewilde.github.io/blog/2014/09/23/intro-to-automatic-keyphrase-extraction/
+* https://blog.statsbot.co/text-classifier-algorithms-in-machine-learning-acc115293278
 * http://www.kdnuggets.com/2015/11/seven-steps-machine-learning-python.html
 * http://www.kdnuggets.com/2017/03/seven-more-steps-machine-learning-python.html
 * http://www.kdnuggets.com/2016/01/seven-steps-deep-learning.html
