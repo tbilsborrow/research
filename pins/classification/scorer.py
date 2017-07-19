@@ -18,24 +18,12 @@ class Result:
         self.num += r.num
 
     def score(self):
-        # my own metric, turns out to be very close to jaccard, except I multiplied match by 2 because
-        # I wanted to compare 2 sets (matching + only in s1, and matching + only in s2) so I figured
-        # the matching set would count twice when combining these 2 sets
+        # my own metric, turns out to be the https://en.wikipedia.org/wiki/F1_score
         return self.match * 2 / (self.match * 2 + self.s1 + self.s2)
 
     def jaccard(self):
         # https://en.wikipedia.org/wiki/Jaccard_index
         return self.match / (self.s1 + self.s2 + self.match)
-
-    def precision(self):
-        return self.match / (self.s2 + self.match)
-
-    def recall(self):
-        return self.match / (self.s1 + self.match)
-
-    def fmeasure(self):
-        # https://en.wikipedia.org/wiki/F1_score
-        return 2 * (self.precision() * self.recall() / (self.precision() + self.recall()))
 
 
 def compare_entities(set1, set2):
@@ -71,11 +59,8 @@ def compare(baseline_filename, compare_filename):
     print('matching: %d' % result.match)
     print('%s only: %d' % (baseline_filename, result.s1))
     print('%s only: %d' % (compare_filename, result.s2))
-    print('score: %f' % result.score())
+    print('F-measure: %f' % result.score())
     print('jaccard: %f' % result.jaccard())
-    print('precision: %f' % result.precision())
-    print('recall: %f' % result.recall())
-    print('F-measure: %f' % result.fmeasure())
 
 
 def main():
