@@ -104,6 +104,7 @@ of looking at all unigrams/bigrams, I tried looking only at noun phrases
 <table>
   <tr>
     <th>TextRazor</th>
+    <th>Dandelion</th>
     <th>Solr</th>
     <th>*gram</th>
     <th>Noun Phrase</th>
@@ -112,6 +113,12 @@ of looking at all unigrams/bigrams, I tried looking only at noun phrases
   </tr>
   <tr>
     <td></td>
+    <td nowrap>
+      matching: 2135<br/>
+      textrazor only: 1411<br/>
+      dandelion only: 2095<br/>
+      score: 0.569076
+    </td>
     <td nowrap>
       matching: 426<br/>
       textrazor only: 3300<br/>
@@ -166,6 +173,29 @@ of looking at all unigrams/bigrams, I tried looking only at noun phrases
 22: Pie<br/>
 21: Chicken<br/>
 1235 unique topics
+    </td>
+    <td nowrap>
+123: Recipe<br/>
+53: Gluten-free_diet<br/>
+47: Do_it_yourself<br/>
+45: Baking<br/>
+39: Slow_cooker<br/>
+35: Chicken<br/>
+35: Physical_exercise<br/>
+35: Chocolate<br/>
+32: Cheese<br/>
+30: Cookie<br/>
+28: Chicken_as_food<br/>
+28: Breakfast<br/>
+27: Healthy_diet<br/>
+27: Dessert<br/>
+26: Veganism<br/>
+26: Salad<br/>
+25: Pumpkin<br/>
+22: Craft<br/>
+21: Child<br/>
+20: Soup<br/>
+1876 unique topics<br/>
     </td>
     <td nowrap>
 38: List_of_America's_Test_Kitchen_episodes<br/>
@@ -312,6 +342,87 @@ The numbers in the topic lists are actual topic counts. For example, of the 1500
 pins, TextRazor determined that 53 of them are related to the Chocolate wikipedia article.
 
 ### Topic list comparisons
+
+##### Dandelion
+<table>
+  <tr>
+    <th>Matching</th>
+    <th>only in TextRazor</th>
+    <th>only in Dandelion</th>
+  </tr>
+  <tr>
+    <td nowrap>
+ 106: Recipe<br/>
+  50: Gluten-free_diet<br/>
+  42: Do_it_yourself<br/>
+  40: Baking<br/>
+  34: Slow_cooker<br/>
+  34: Chocolate<br/>
+  32: Chicken<br/>
+  28: Cheese<br/>
+  27: Cookie<br/>
+  25: Dessert<br/>
+  25: Chicken_as_food<br/>
+  24: Breakfast<br/>
+  24: Veganism<br/>
+  24: Salad<br/>
+  23: Healthy_diet<br/>
+  22: Physical_exercise<br/>
+  20: Pumpkin<br/>
+  19: Vegetable<br/>
+  18: Peanut_butter<br/>
+  18: Halloween<br/>
+973 topics<br/>
+    </td>
+    <td nowrap>
+only in textrazor-results.txt
+  30: Gluten<br/>
+  17: Kitchen_stove<br/>
+  17: Italy<br/>
+  11: France<br/>
+   9: Bean<br/>
+   8: Macaroni<br/>
+   7: Protein<br/>
+   7: Crock_(dishware)<br/>
+   4: Salt<br/>
+   4: England<br/>
+   3: Wife<br/>
+   3: China<br/>
+   3: Curd<br/>
+   3: Thailand<br/>
+   3: Poland<br/>
+   3: Mint_chocolate<br/>
+   2: Foil_(fencing)<br/>
+   2: Baking_mix<br/>
+   2: Slider<br/>
+   2: Blood<br/>
+262 topics<br/>
+    </td>
+    <td nowrap>
+  19: Child<br/>
+  18: Flavor<br/>
+  17: Italian_cuisine<br/>
+  17: Craft<br/>
+  16: Taste<br/>
+  14: Food<br/>
+  13: Handicraft<br/>
+   9: Protein_(nutrient)<br/>
+   8: Love<br/>
+   8: Idea<br/>
+   7: Confectionery<br/>
+   7: Family<br/>
+   7: Abdomen<br/>
+   7: What's_Cookin'?<br/>
+   7: Orange_(fruit)<br/>
+   6: Beauty<br/>
+   6: Turkey_(bird)<br/>
+   5: Gift<br/>
+   5: Maple_syrup<br/>
+   5: Meat_tenderness<br/>
+903 topics<br/>
+    </td>
+  </tr>
+</tr></table>
 
 ##### Solr
 <table>
