@@ -35,6 +35,6 @@ thinc==6.5.2
 toolz==0.8.2
 tqdm==4.11.2
 ujson==1.35
-urllib3==1.21.1
+urllib3==1.24.2
 watson-developer-cloud==0.26.1
 wrapt==1.10.10
